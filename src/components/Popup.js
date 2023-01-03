@@ -1,5 +1,7 @@
 import Image from "next/image"
 import { useState } from "react";
+import Inbox from "./Inbox";
+import Task from "./Task";
 
 export default function Popup() {
     const [open, setOpen] = useState(false);
@@ -61,36 +63,36 @@ export default function Popup() {
                     <Image 
                         className={`${popup2? "" : "hidden"}`}
                         onClick={() => setPopup2(!popup2)}
-                        src="/icons/active-message.svg"
+                        src="/icons/active-message1.svg"
                         alt="active inbox icon"
-                        width="68"
+                        width="83"
                         height="68"
                     />
                     <Image 
                         className={`${popup1? "" : "hidden"}`}
                         onClick={() => setPopup1(!popup1)}
-                        src="/icons/active-todo.svg"
+                        src="/icons/active-todo1.svg"
                         alt="active task icon"
-                        width="68"
+                        width="83"
                         height="68"
                     />
                 </div>
             </div>
             
             <div className={`${popup1
-                    ? "opacity-100"
-                    : "opacity-0 z-[-1]"
+                    ? ""
+                    : "hidden"
                 } transition-all ease-in duration-500`}>
                 <div className="absolute bottom-[130px] right-[34px] bg-[#FFFF] h-[500px] w-[500px] rounded-lg">
-task
+                    <Task />
                 </div>
             </div>
             <div className={`${popup2
-                    ? "opacity-100"
-                    : "opacity-0 z-[-1]"
+                    ? ""
+                    : "hidden"
                 } transition-all ease-in duration-500`}>
                 <div className="absolute bottom-[130px] right-[34px] bg-[#FFFF] h-[500px] w-[500px] rounded-lg">
-inbox
+                    <Inbox />
                 </div>
             </div>
         </>
