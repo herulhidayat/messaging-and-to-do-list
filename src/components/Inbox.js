@@ -1,9 +1,10 @@
 import Image from "next/image"
+import { useState } from "react"
 
-export default function Inbox() {
+export default function Inbox(props) {
     return(
         <>
-            <div className="py-[24px] px-[32px] flex flex-col justify-center font-lato max-h-full gap-3">
+            <div className="py-[24px] px-[32px] flex flex-col justify-center font-lato h-[500px] gap-3">
                 <form>
                     <div className="border border-[#828282] rounded h-[32px] px-10 flex justify-between items-center relative">
                         <input type="search" class="outline-none border-none bg-transparent grow" placeholder="Search"/>
@@ -25,7 +26,7 @@ export default function Inbox() {
                             width="51"
                             height="34"
                         />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col" onClick={() => props.chat()}>
                             <div className="flex flex-row gap-3">
                                 <span className="text-[#2F80ED]">109220-Naturalization</span>
                                 <span className="text-[#4F4F4F]">January 1,2021 19:10</span>

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { useState } from "react";
+import ChatRoom from "./ChatRoom";
 import Inbox from "./Inbox";
 import Task from "./Task";
 
@@ -7,7 +8,10 @@ export default function Popup() {
     const [open, setOpen] = useState(false);
     const [popup1, setPopup1] = useState(false);
     const [popup2, setPopup2] = useState(false);
-    console.log(open,popup1,popup2)
+    const [chatRoom, setChatroom] = useState(false)
+    const chat = () => {setChatroom(!chatRoom)}
+    const close = () => {setOpen(false); setPopup1(false); setPopup2(false); chat()}
+    console.log(open, popup1, popup2,chatRoom)
     return(
         <>
             <div className="absolute bottom-[34px] right-[34px] flex justify-center gap-[26px]">
@@ -92,7 +96,12 @@ export default function Popup() {
                     : "hidden"
                 } transition-all ease-in duration-500`}>
                 <div className="absolute bottom-[130px] right-[34px] bg-[#FFFF] h-[500px] w-[500px] rounded-lg">
-                    <Inbox />
+                    <div className={`${chatRoom? "hidden" : ""}`}>
+                        <Inbox chat={chat}/>
+                    </div>
+                    <div className={`${chatRoom? "" : "hidden"}`}>
+                        <ChatRoom chat={chat} close={close}/>
+                    </div>
                 </div>
             </div>
         </>
