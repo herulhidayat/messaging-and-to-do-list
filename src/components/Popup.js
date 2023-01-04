@@ -10,7 +10,7 @@ export default function Popup() {
     const [popup2, setPopup2] = useState(false);
     const [chatRoom, setChatroom] = useState(false)
     const chat = () => {setChatroom(!chatRoom)}
-    const close = () => {setOpen(false); setPopup1(false); setPopup2(false); chat()}
+    const close = () => {setOpen(false); setPopup1(false); setPopup2(false); setChatroom(false)}
     console.log(open, popup1, popup2,chatRoom)
     return(
         <>
