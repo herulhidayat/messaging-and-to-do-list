@@ -3,8 +3,8 @@ import DataContext from './DataContext';
 
 export const useGetInbox = () => {
     const context = useContext(DataContext);
-    const { data, error } = context;
-    return  { data, error }
+    const { data, data2, comments, error } = context;
+    return  { data, data2, comments, error }
 }
 
 const GetInbox = ({children}) => {
@@ -12,6 +12,7 @@ const GetInbox = ({children}) => {
     const [data2, setData2] = useState(null);
     const [error, setError] = useState(null);
     const [data, setData] = useState({});
+    const [comments, setComments] = useState(null);
   
     useEffect(() => {
       async function fetchData1() {
@@ -19,7 +20,6 @@ const GetInbox = ({children}) => {
           const response1 = await fetch('https://jsonplaceholder.typicode.com/users/');
           const json1 = await response1.json();
           setData1(json1);
-          console.log("data1",json1)
         } catch (err) {
           setError(err);
         }
@@ -35,7 +35,6 @@ const GetInbox = ({children}) => {
             const response2 = await fetch('https://jsonplaceholder.typicode.com/posts/');
             const json2 = await response2.json();
             setData2(json2);
-            console.log("data2",json2)
           } catch (err) {
             setError(err);
           }
@@ -65,10 +64,25 @@ const GetInbox = ({children}) => {
           }
         });
       }, [data2]);
-    // console.log("aaaa",data)
+
+      useEffect(() => {
+        async function fetchData3() {
+          try {
+            const response3 = await fetch('https://jsonplaceholder.typicode.com/comments/');
+            const json3 = await response3.json();
+            setComments(json3);
+          } catch (err) {
+            setError(err);
+          }
+        }
+    
+        if (!comments) {
+            fetchData3();
+          }
+      }, [comments]);
   
     return (
-      <DataContext.Provider value={{ data, error }}>
+      <DataContext.Provider value={{ data, data2, comments, error }}>
         {children}
       </DataContext.Provider>
     );

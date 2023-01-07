@@ -10,9 +10,10 @@ export default function Popup() {
     const [popup1, setPopup1] = useState(false);
     const [popup2, setPopup2] = useState(false);
     const [chatRoom, setChatroom] = useState(false)
-    const chat = () => {setChatroom(!chatRoom)}
+    const [roomId, setRoomId] = useState({}) 
+    const chat = (id) => {setChatroom(!chatRoom),setRoomId(id)}
     const close = () => {setOpen(false); setPopup1(false); setPopup2(false); setChatroom(false)}
-    console.log(open, popup1, popup2,chatRoom)
+    
     return(
         <>
             <div className="absolute bottom-[34px] right-[34px] flex justify-center gap-[26px]">
@@ -103,7 +104,9 @@ export default function Popup() {
                         </GetInbox>
                     </div>
                     <div className={`${chatRoom? "" : "hidden"}`}>
-                        <ChatRoom chat={chat} close={close}/>
+                        <GetInbox>
+                            <ChatRoom chat={chat} close={close} roomId={roomId}/>
+                        </GetInbox>
                     </div>
                 </div>
             </div>

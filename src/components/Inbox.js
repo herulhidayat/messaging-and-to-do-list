@@ -30,7 +30,7 @@ export default function Inbox(props) {
                                 width="51"
                                 height="34"
                             />
-                            <div className="flex flex-col" onClick={() => props.chat()}>
+                            <div className="flex flex-col" onClick={() => props.chat(data.userId)}>
                                 <div className="flex flex-row gap-3">
                                     <span className="text-[#2F80ED]">{data.title}</span>
                                     <span className="text-[#4F4F4F]">January 1,2021 19:10</span>
