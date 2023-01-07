@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { useState } from "react";
+import GetInbox from "../services/GetInbox";
 import ChatRoom from "./ChatRoom";
 import Inbox from "./Inbox";
 import Task from "./Task";
@@ -97,7 +98,9 @@ export default function Popup() {
                 } transition-all ease-in duration-500`}>
                 <div className="absolute bottom-[130px] right-[34px] bg-[#FFFF] h-[500px] w-[500px] rounded-lg">
                     <div className={`${chatRoom? "hidden" : ""}`}>
-                        <Inbox chat={chat}/>
+                        <GetInbox>
+                            <Inbox chat={chat}/>
+                        </GetInbox>
                     </div>
                     <div className={`${chatRoom? "" : "hidden"}`}>
                         <ChatRoom chat={chat} close={close}/>
