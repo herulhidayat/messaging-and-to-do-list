@@ -2,11 +2,20 @@ import { useState } from "react"
 import Image from "next/image"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useGetTodo } from "../services/GetTodo";
 
 export default function Task() {
     const [showTask, setShowTask] = useState(false)
     const [more, setMore] = useState(false)
     const [startDate, setStartDate] = useState(new Date());
+    const api = useGetTodo()
+    const data = api.todo
+    if(!data){
+        return(
+            <p>Data belum ada</p>
+        )
+    }
+    // console.log("aaa",data)
     return(
         <>
             <div className="flex flex-col justify-start font-lato h-[500px] gap-3 py-[24px] px-[32px]">
@@ -21,16 +30,17 @@ export default function Task() {
                     <button className="bg-[#2F80ED] rounded px-5 text-[#FFFFFF] text-sm">New Task</button>
                 </div>
                 <div className="flex flex-col justify-start divide-y divide-[#BDBDBD] overflow-auto">
-                    <div className="flex flex-col gap-3">
-                        <div className="flex flex-row gap-3 items-start">
+                {Object.values(data).map(data => (
+                    <div className="flex flex-col gap-3 p-3">
+                        <div className={`${data.completed === true? "line-through" : ""} flex flex-row justify-between gap-3 items-start`}>
                             <form className="flex gap-2">
-                                <input type="checkbox" id="" name="" value="" />
-                                <label for="" className="font-bold text-sm text-[#4F4F4F]">
-                                    Close off Case #012920- RODRIGUES, Amiguel
+                                <input type="checkbox" id="" name="" checked={data.completed} />
+                                <label for="" className={`font-bold text-sm text-[#4F4F4F]`}>
+                                    {data.title}
                                 </label>
                             </form>
                             <span className="text-xs text-[#EB5757]">2 days left</span>
-                            <span className="text-xs text-[#4F4F4F]">09/01/2023</span>
+                            <span className="text-xs text-[#4F4F4F]">{data.created_at}</span>
                             <Image
                                 onClick={() => setShowTask(!showTask)}
                                 className={`${showTask? "" : "hidden"}`}
@@ -71,7 +81,7 @@ export default function Task() {
                                     height="16"
                                 />
                                 <div className="border border-[#4F4F4F] text-sm rounded bg-transparent flex flex-row p-2">
-                                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className="outline-none border-none bg-transparent"/>
+                                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className="outline-none border-none bg-transparent" value={data.created_at}/>
                                     <Image
                                         src="/icons/calendar.svg"
                                         alt="calendar"
@@ -87,10 +97,11 @@ export default function Task() {
                                     width="16"
                                     height="16"
                                 />
-                                <p className="text-sm">Closing off this case since this application has been cancelled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!</p>
+                                <p className="text-sm">{data.notes}</p>
                             </div>
                         </div>
                     </div>
+                ))}
                 </div>
             </div>
         </>

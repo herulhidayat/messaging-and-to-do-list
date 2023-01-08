@@ -3,11 +3,16 @@ import { useGetInbox } from "../services/GetInbox"
 
 export default function Inbox(props) {
     const api = useGetInbox()
-    const data = api.data
+    const data = api.chat
+    if(!data){
+        return(
+            <p>Data belum ada</p>
+        )
+    }
 
     return(
         <>
-            <div className="py-[24px] px-[32px] flex flex-col justify-center font-lato h-[500px] gap-3">
+            <div className="py-[24px] px-[32px] flex flex-col justify-start font-lato h-[500px] gap-3">
                 <form>
                     <div className="border border-[#828282] rounded h-[32px] px-10 flex justify-between items-center relative">
                         <input type="search" class="outline-none border-none bg-transparent grow" placeholder="Search"/>
@@ -30,13 +35,13 @@ export default function Inbox(props) {
                                 width="51"
                                 height="34"
                             />
-                            <div className="flex flex-col" onClick={() => props.chat(data.userId)}>
+                            <div className="flex flex-col" onClick={() => props.chat(data.inboxId)}>
                                 <div className="flex flex-row gap-3">
                                     <span className="text-[#2F80ED]">{data.title}</span>
                                     <span className="text-[#4F4F4F]">January 1,2021 19:10</span>
                                 </div>
-                                <span className="font-bold text-[#4F4F4F]">{data.name}</span>
-                                <p className="text-[#4F4F4F]">{data.body}</p>
+                                <span className="font-bold text-[#4F4F4F]">{data.chat[data.chat.length-1].name}</span>
+                                <p className="text-[#4F4F4F]">{data.chat[data.chat.length-1].message}</p>
                             </div>
                         </div>
                     ))}
