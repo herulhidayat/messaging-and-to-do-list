@@ -1,7 +1,10 @@
 import Image from "next/image"
 import { useGetInbox } from "../services/GetInbox"
+import { useState } from "react"
 
 export default function Inbox(props) {
+    const [searchTerm, setSearchTerm] = useState('')
+
     const api = useGetInbox()
     const data = api.chat
     if(!data){
@@ -15,19 +18,17 @@ export default function Inbox(props) {
             <div className="py-[24px] px-[32px] flex flex-col justify-start font-lato h-[500px] gap-3">
                 <form>
                     <div className="border border-[#828282] rounded h-[32px] px-10 flex justify-between items-center relative">
-                        <input type="search" class="outline-none border-none bg-transparent grow" placeholder="Search"/>
-                        <button type="submit">
-                            <Image 
-                                src="/icons/search.svg"
-                                alt="search"
-                                width="13"
-                                height="13"
-                            />
-                        </button>
+                        <input type="search" class="outline-none border-none bg-transparent grow" placeholder="Search" onChange={event => setSearchTerm(event.target.value)}/>
+                        <Image 
+                            src="/icons/search.svg"
+                            alt="search"
+                            width="13"
+                            height="13"
+                        />
                     </div>
                 </form>
                 <div className="divide-y divide-[#828282] overflow-auto">
-                    {Object.values(data).map(data => (
+                    {Object.values(data).filter(data => data.title.toLowerCase().includes(searchTerm)).map(data => (
                         <div className="flex flex-row py-[22px] text-sm gap-3">
                             <Image 
                                 src="/icons/avatar-group.svg"

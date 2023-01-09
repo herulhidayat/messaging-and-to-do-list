@@ -6,7 +6,9 @@ import { useGetTodo } from "../services/GetTodo";
 
 export default function Task() {
     const [showTask, setShowTask] = useState(false)
+    const [selectedShowTask, setSelectedShowTask] = useState()
     const [more, setMore] = useState(false)
+    const [selectedMore, setSelectedMore] = useState()
     const [startDate, setStartDate] = useState(new Date());
     const api = useGetTodo()
     const data = api.todo
@@ -42,7 +44,7 @@ export default function Task() {
                             <span className="text-xs text-[#EB5757]">2 days left</span>
                             <span className="text-xs text-[#4F4F4F]">{data.created_at}</span>
                             <Image
-                                onClick={() => setShowTask(!showTask)}
+                                onClick={() => {setShowTask(!showTask); setSelectedShowTask(data.id)}}
                                 className={`${showTask? "" : "hidden"}`}
                                 src="/icons/down.svg"
                                 alt="show content"
@@ -50,7 +52,7 @@ export default function Task() {
                                 height="16"
                             />
                             <Image
-                                onClick={() => setShowTask(!showTask)}
+                                onClick={() => {setShowTask(!showTask); setSelectedShowTask(data.id)}}
                                 className={`${showTask? "hidden" : ""}`}
                                 src="/icons/up.svg"
                                 alt="hide content"
@@ -58,13 +60,13 @@ export default function Task() {
                                 height="16"
                             />
                             <Image
-                                onClick={() => setMore(!more)}
+                                onClick={() => {setMore(!more); setSelectedMore(data.id)}}
                                 src="/icons/more.svg"
                                 alt="more"
                                 width="16"
                                 height="16"
                             />
-                            <div className={`${more? "oppacity-100" : "oppacity-0 z-[-1]"} absolute bg-white right-1 mt-5`}>
+                            <div className={`${more && selectedMore === data.id? "oppacity-100" : "oppacity-0 z-[-1]"} absolute bg-white right-1 mt-5`}>
                                 <div className={`flex flex-col justify-center border-[1px] border-[#BDBDBD] rounded p-2 text-sm min-w-[70px]`}>
                                     <button className="flex items-start">
                                         <span className="text-[#EB5757]">Delete</span>
@@ -72,7 +74,7 @@ export default function Task() {
                                 </div>
                             </div>
                         </div>
-                        <div className={`${showTask? "hidden" : ""} flex flex-col gap-3 pl-5`}>
+                        <div className={`${showTask && selectedShowTask === data.id? "hidden" : ""} flex flex-col gap-3 pl-5`}>
                             <div className="flex flex-row justify-start gap-3">
                                 <Image
                                     src="/icons/clock.svg"

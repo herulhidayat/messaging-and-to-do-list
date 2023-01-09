@@ -4,12 +4,9 @@ import { useGetInbox } from "../services/GetInbox"
 
 export default function ChatRoom(props) {
     const [more, setMore] = useState(false)
-    const api = useGetInbox()
-    // const chat = api.comments
-    // const name = api.data
+    const [selectedMore, setSelectedMore] = useState()
 
-    // const objectById = chat?.filter(object => object.postId === props.roomId);
-    // const count = objectById?.length;
+    const api = useGetInbox()
     const chat = api.chat
 
     if(!chat){
@@ -17,7 +14,6 @@ export default function ChatRoom(props) {
             <p>Data Belum ada</p>
         )
     }
-    console.log("ccc",chat, props.roomId)
 
     return(
         <>
@@ -61,10 +57,10 @@ export default function ChatRoom(props) {
                                             <div className="flex flex-col gap-1 items-end">
                                                 <span className="text-[#9B51E0]">You</span>
                                                 <div className="flex flex-row justify-center items-start gap-1">
-                                                    <div className={`${more? "oppacity-100" : "oppacity-0 z-[-1]"}`}>
+                                                    <div className={`${more && selectedMore === message.chatId? "oppacity-100" : "oppacity-0 z-[-1]"}`}>
                                                         <div className={`flex flex-col justify-center border-[1px] border-[#BDBDBD] divide-y divide-[#BDBDBD] rounded p-2 text-sm min-w-[70px]`}>
                                                             <button className="flex items-start">
-                                                                <span className="text-[#2F80ED]">Replay</span>
+                                                                <span className="text-[#2F80ED]">Edit</span>
                                                             </button>
                                                             <button className="flex items-start">
                                                                 <span className="text-[#EB5757]">Delete</span>
@@ -72,7 +68,7 @@ export default function ChatRoom(props) {
                                                         </div>
                                                     </div>
                                                     <Image
-                                                        onClick={() => setMore(!more)}
+                                                        onClick={() => {setMore(!more); setSelectedMore(message.chatId)}}
                                                         src="/icons/more.svg"
                                                         alt="more"
                                                         width="16"
@@ -96,13 +92,13 @@ export default function ChatRoom(props) {
                                                         <span className="text-sm">{(message.created_at).substring(14,19)}</span>
                                                     </div>
                                                     <Image
-                                                        onClick={() => setMore(!more)}
+                                                        onClick={() => {setMore(!more); setSelectedMore(message.chatId)}}
                                                         src="/icons/more.svg"
                                                         alt="more"
                                                         width="16"
                                                         height="16"
                                                     />
-                                                    <div className={`${more? "oppacity-100" : "oppacity-0 z-[-1]"}`}>
+                                                    <div className={`${more && selectedMore === message.chatId? "oppacity-100" : "oppacity-0 z-[-1]"}`}>
                                                         <div className={`flex flex-col justify-center border-[1px] border-[#BDBDBD] divide-y divide-[#BDBDBD] rounded p-2 text-sm min-w-[70px]`}>
                                                             <button className="flex items-start">
                                                                 <span className="text-[#2F80ED]">Replay</span>
