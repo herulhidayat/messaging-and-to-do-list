@@ -33,7 +33,7 @@ export default function Task() {
                 </div>
                 <div className="flex flex-col justify-start divide-y divide-[#BDBDBD] overflow-auto">
                 {Object.values(data).map(data => (
-                    <div className="flex flex-col gap-3 p-3">
+                    <div className="flex flex-col gap-3 p-3" key={data.id}>
                         <div className={`${data.completed === true? "line-through" : ""} flex flex-row justify-between gap-3 items-start`}>
                             <form className="flex gap-2">
                                 <input type="checkbox" id="" name="" checked={data.completed} />

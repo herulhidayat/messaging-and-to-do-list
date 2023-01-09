@@ -29,7 +29,7 @@ export default function Inbox(props) {
                 </form>
                 <div className="divide-y divide-[#828282] overflow-auto">
                     {Object.values(data).filter(data => data.title.toLowerCase().includes(searchTerm)).map(data => (
-                        <div className="flex flex-row py-[22px] text-sm gap-3">
+                        <div className="flex flex-row py-[22px] text-sm gap-3" key={data.inboxId}>
                             <Image 
                                 src="/icons/avatar-group.svg"
                                 alt="avatar icon"

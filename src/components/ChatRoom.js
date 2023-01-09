@@ -30,7 +30,7 @@ export default function ChatRoom(props) {
                     {Object.values(chat).map(data => {
                         if(props.roomId === data.inboxId){
                             return(
-                                <div className="flex flex-col justify-center grow px-5">
+                                <div className="flex flex-col justify-center grow px-5" key={data.inboxId}>
                                     <span className="text-[#2F80ED]">{data.title}</span>
                                     <span className="text-[#4F4F4F] text-sm">{data.participant} Participant</span>
                                 </div>
@@ -54,7 +54,7 @@ export default function ChatRoom(props) {
                                 {Object.values(data.chat).map(message => {
                                     if(message.userId === 1){
                                         return(
-                                            <div className="flex flex-col gap-1 items-end">
+                                            <div className="flex flex-col gap-1 items-end" key={message.chatId}>
                                                 <span className="text-[#9B51E0]">You</span>
                                                 <div className="flex flex-row justify-center items-start gap-1">
                                                     <div className={`${more && selectedMore === message.chatId? "oppacity-100" : "oppacity-0 z-[-1]"}`}>
@@ -84,7 +84,7 @@ export default function ChatRoom(props) {
                                     }
                                     else {
                                         return(
-                                            <div className="flex flex-col gap-1">
+                                            <div className="flex flex-col gap-1" key={message.chatId}>
                                                 <span className="text-[#E5A443]">{message.name}</span>
                                                 <div className="flex flex-row justify-star items-start gap-1">
                                                     <div className="flex flex-col justify-center p-3 bg-[#FCEED3] rounded-lg text-[#4F4F4F] gap-2">
