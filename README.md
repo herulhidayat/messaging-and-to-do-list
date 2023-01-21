@@ -1,6 +1,6 @@
-<h2 align="center">
+<h1 align="center">
   Messaging and To Do List Popup
-</h2>
+</h1>
 
 <p align="center">
 A message and to do list application is created using a dummy API, has a popup display, and can be integrated with other applications.
