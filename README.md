@@ -1,6 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h3 align="center">
+  Messaging and To Do List Popup
+</h3>
 
-## Getting Started
+<p align="center">
+A message and to do list application is created using a dummy API, has a popup display, and can be integrated with other applications.
+</p>
+
+<div id="top"></div>
+
+# Table of Contents
+
+<ol>
+  <li><a href="#built-with">Built With</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li><a href="#deployment">Deployment</a></li>
+  <li><a href="#features-roadmap">Features Roadmap</a></li>
+  <li><a href="#authors">Authors</a></li>
+</ol>
+
+# Built With
+
+- Node Js: 14.17.6^
+- Next.js : v13.1.1
+- Npm : 6.14.15
+
+Packages and etc:
+- Framework : React.js
+- Style : Tailwindcss
+- Component :
+  - React Context
+- Addition :
+  - React Date-Picker
+- Linter :
+  - Eslint
+
+<p align="right">(<a href="#top">back to table of contents</a>)</p>
+
+# Getting Started
 
 First, run the development server:
 
@@ -34,3 +70,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Deployment
+
+- [Deployment](https://fe-main.ipe-glintsacademy.com/)
+
+<p align="right">(<a href="#top">back to table of contents</a>)</p>
+
+## Features Roadmap
+
+- [x] To Do List
+- [x] Messaging
+
+<p align="right">(<a href="#top">back to table of contents</a>)</p>
+
+## Authors
+- [Khairul Hidayat](mailto:khaerulhidayatherul@gmail.com)
+
+<p align="right">(<a href="#top">back to table of contents</a>)</p>
