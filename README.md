@@ -1,6 +1,6 @@
-<h3 align="center">
+<h2 align="center">
   Messaging and To Do List Popup
-</h3>
+</h2>
 
 <p align="center">
 A message and to do list application is created using a dummy API, has a popup display, and can be integrated with other applications.
@@ -73,7 +73,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Deployment
 
-- [Deployment](https://fe-main.ipe-glintsacademy.com/)
+- [Deployment](https://main--enchanting-haupia-52cb48.netlify.app/)
 
 <p align="right">(<a href="#top">back to table of contents</a>)</p>
 
